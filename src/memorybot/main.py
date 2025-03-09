@@ -85,5 +85,5 @@ crew = Crew(
 
 def deploy():
     run = crew.kickoff(inputs={'question':'Where does the user live?'})
-    print(run)
+    return run
 
