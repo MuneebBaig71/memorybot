@@ -1,54 +1,109 @@
-# Memorybot Crew
 
-Welcome to the Memorybot Crew project, powered by [crewAI](https://crewai.com). This template is designed to help you set up a multi-agent AI system with ease, leveraging the powerful and flexible framework provided by crewAI. Our goal is to enable your agents to collaborate effectively on complex tasks, maximizing their collective intelligence and capabilities.
+# 🧠 MemoryBot: Personalized AI Agent with CrewAI + Gemini
 
-## Installation
+**MemoryBot** is a memory-augmented autonomous agent built using [CrewAI](https://docs.crewai.com), Google's **Gemini API**, and persistent memory mechanisms. It is designed to answer personalized questions about a user by leveraging both static knowledge from a file and dynamic memory layers.
 
-Ensure you have Python >=3.10 <3.13 installed on your system. This project uses [UV](https://docs.astral.sh/uv/) for dependency management and package handling, offering a seamless setup and execution experience.
+---
 
-First, if you haven't already, install uv:
+## 📌 Features
 
+- 🤖 **Intelligent Agent**: Uses Gemini Pro 1.5 via CrewAI to understand and respond.
+- 📄 **User Knowledge**: Loads personal info from a `user_preference.txt` file.
+- 💾 **Memory Layers**:
+  - **Long-Term Memory**: Stored in a local SQLite database.
+  - **Short-Term Memory**: Contextual awareness via RAG.
+  - **Entity Memory**: Entity-specific memory management via RAG.
+- 🔁 **Sequential Task Handling**: Modular and extendable task pipeline.
+
+---
+
+## 🚀 Setup Instructions
+
+### 1. Clone the Repo
 ```bash
-pip install uv
+git clone https://github.com/MuneebBaig71/memorybot.git
+cd memorybot
 ```
 
-Next, navigate to your project directory and install the dependencies:
-
-(Optional) Lock the dependencies and install them by using the CLI command:
+### 2. Create Virtual Environment (Optional)
 ```bash
-crewai install
-```
-### Customizing
-
-**Add your `OPENAI_API_KEY` into the `.env` file**
-
-- Modify `src/memorybot/config/agents.yaml` to define your agents
-- Modify `src/memorybot/config/tasks.yaml` to define your tasks
-- Modify `src/memorybot/crew.py` to add your own logic, tools and specific args
-- Modify `src/memorybot/main.py` to add custom inputs for your agents and tasks
-
-## Running the Project
-
-To kickstart your crew of AI agents and begin task execution, run this from the root folder of your project:
-
-```bash
-$ crewai run
+python -m venv venv
+source venv/bin/activate  # On Windows use: venv\Scripts\activate
 ```
 
-This command initializes the memorybot Crew, assembling the agents and assigning them tasks as defined in your configuration.
+### 3. Install Requirements
+```bash
+pip install -r requirements.txt
+```
 
-This example, unmodified, will run the create a `report.md` file with the output of a research on LLMs in the root folder.
+### 4. Environment Variable
 
-## Understanding Your Crew
+Create a `.env` file and add your Gemini API key:
+```env
+GEMINI_API_KEY=your_google_gemini_api_key
+```
 
-The memorybot Crew is composed of multiple AI agents, each with unique roles, goals, and tools. These agents collaborate on a series of tasks, defined in `config/tasks.yaml`, leveraging their collective skills to achieve complex objectives. The `config/agents.yaml` file outlines the capabilities and configurations of each agent in your crew.
+Or export it in your shell:
+```bash
+export GEMINI_API_KEY=your_google_gemini_api_key
+```
 
-## Support
+### 5. Create `user_preference.txt`
 
-For support, questions, or feedback regarding the Memorybot Crew or crewAI.
-- Visit our [documentation](https://docs.crewai.com)
-- Reach out to us through our [GitHub repository](https://github.com/joaomdmoura/crewai)
-- [Join our Discord](https://discord.com/invite/X4JWnZnxPb)
-- [Chat with our docs](https://chatg.pt/DWjSBZn)
+Add some basic user info for the agent to learn:
+```
+Name: Muneeb
+Location: Lahore
+Likes: AI, Research, Programming
+Dislikes: Noise
+```
 
-Let's create wonders together with the power and simplicity of crewAI.
+---
+
+## 🧪 Run the Agent
+
+In your Python script or REPL:
+```python
+from main import deploy
+
+response = deploy()
+print(response)
+```
+
+---
+
+## 🗃️ Project Structure
+
+```
+memorybot/
+├── main.py                   # Main script containing agent logic
+├── user_preference.txt       # User data file
+├── my_crew1/                 # Memory directories
+│   ├── long_term_memory_storage.db
+│   ├── short_term1/
+│   └── (entity memory path)
+├── .env                      # Gemini API key (not committed)
+└── requirements.txt          # Python dependencies
+```
+
+---
+
+## 🛠️ Built With
+
+- [CrewAI](https://docs.crewai.com)
+- [Google Gemini API](https://ai.google.dev/)
+- [SQLite](https://www.sqlite.org/index.html)
+- [RAG Memory](https://docs.crewai.com/memory/short-term)
+
+---
+
+## 📌 Notes
+
+- This project is ideal for building personalized assistants or user-centric bots.
+- You can adapt the `agent` and `task` definitions for any goal-oriented use case.
+
+---
+
+## 📄 License
+
+MIT License © Muneeb Baig
