@@ -52,10 +52,10 @@ export GEMINI_API_KEY=your_google_gemini_api_key
 
 Add some basic user info for the agent to learn:
 ```
-Name: Muneeb
-Location: Lahore
-Likes: AI, Research, Programming
-Dislikes: Noise
+User name is John Doe.
+User is an AI Engineer.
+User is interested in AI Agents.
+User is based in San Francisco, California.
 ```
 
 ---
